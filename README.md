@@ -29,6 +29,9 @@ Users will be able to:
 ### Screenshot
 
 ![./public/images/page1.png](./public/images/page1.png)
+![./public/images/error.png](./public/images/error.png)
+![./public/images/page2.png](./public/images/page2.png)
+![./public/images/page3.png](./public/images/page3.png)
 
 - Solution URL: [https://github.com/12Ricky0/multistep-form.git](https://github.com/12Ricky0/multistep-form.git)
 - Live Site URL: [https://multistep-form-six-phi.vercel.app/](https://multistep-form-six-phi.vercel.app/)
