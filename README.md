@@ -28,10 +28,10 @@ Users will be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![./public/images/page1.png](./public/images/page1.png)
 
 - Solution URL: [https://github.com/12Ricky0/multistep-form.git](https://github.com/12Ricky0/multistep-form.git)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [https://multistep-form-six-phi.vercel.app/](https://multistep-form-six-phi.vercel.app/)
 
 ### Built with
 
