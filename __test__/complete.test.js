@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import CompletedForm from '../src/components/Completed.js';
-import '@testing-library/jest-dom'
+import FormOne from '../src/components/FormOne.js';
+import user from "@testing-library/user-event";
 
 describe('App tests', () => {
     localStorage.setItem('name', 'Richard')
@@ -15,4 +16,19 @@ describe('App tests', () => {
         const name = screen.getByTestId('name')
         expect(name).toHaveTextContent('Richard')
     });
+
+    it('should render the FormOne component', () => {
+        render(<FormOne />);
+        const form = screen.getByRole('form');
+        expect(form).toBeInTheDocument();
+    });
+
+    // it('should display validation error', async () => {
+    //     render(<FormOne />);
+    //     const nameInput = screen.getByPlaceholderText('e.g. Stephen King')
+    //     const button = await screen.findByRole('button')
+    //     user.type(nameInput, "John Doe");
+
+    //     expect(button).toBeDisabled();
+    // });
 });
