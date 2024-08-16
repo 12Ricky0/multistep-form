@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import CompletedForm from '../src/components/Completed.js';
-import FormOne from '../src/components/FormOne.js';
+import FormOne from '../components/FormOne.js';
+import CompletedForm from '../components/Completed.js';
 import user from "@testing-library/user-event";
+
 
 describe('App tests', () => {
     localStorage.setItem('name', 'Richard')
