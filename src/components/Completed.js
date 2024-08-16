@@ -59,7 +59,7 @@ function CompletedForm() {
                         <img className="complete-img" src="images/icon-thank-you.svg" alt="img" />
 
                         <h1 className="complete-p">Thank you!</h1>
-                        <p className="complete-p"> Thanks {<strong>{name}</strong>} for confirming your subscription! We hope you have fun
+                        <p className="complete-p"> Thanks {<strong data-testid="name">{name}</strong>} for confirming your subscription! We hope you have fun
                             using our platform. If you ever need support, please feel free
                             to email us at support@loremgaming.com.</p>
 
