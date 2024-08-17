@@ -3,9 +3,16 @@ import React from 'react';
 import FormOne from '../components/FormOne.js';
 import CompletedForm from '../components/Completed.js';
 import user from "@testing-library/user-event";
+import FormTwo from '../components/FormTwo.js';
 
+jest.mock('react-responsive', () => ({
+    __esModule: true,  // Ensures that ES6 module is handled correctly
+    default: jest.fn((props) => (props.children)),
+}));
 
 describe('App tests', () => {
+
+
     localStorage.setItem('name', 'Richard')
     it('should contains the heading 1', () => {
         render(<CompletedForm />);
@@ -24,12 +31,31 @@ describe('App tests', () => {
         expect(form).toBeInTheDocument();
     });
 
-    // it('should display validation error', async () => {
-    //     render(<FormOne />);
-    //     const nameInput = screen.getByPlaceholderText('e.g. Stephen King')
-    //     const button = await screen.findByRole('button')
-    //     user.type(nameInput, "John Doe");
+    it('should display validation error', async () => {
+        const mock = "This field is required";
+        render(<FormOne nameError={mock} />);
+        const button = screen.getAllByRole('button', { name: /next step/i })[0]
 
-    //     expect(button).toBeDisabled();
-    // });
+        user.click(button)
+        const error = await screen.findByText("This field is required")
+        expect(error).toBeInTheDocument();
+    });
+
+    it('should render the FormTwo component', () => {
+        render(<FormTwo />);
+        const form = screen.getByRole('heading', { name: /select your plan/i });
+        expect(form).toBeInTheDocument();
+    });
+    it('users can make a choice', async () => {
+
+        const onChange = jest.fn();
+        render(<FormTwo onChange={onChange} />);
+        const button = screen.getByRole('checkbox');
+        user.click(button)
+        expect(onChange).toHaveBeenCalled()
+    });
 });
+
+const pause = () => {
+    return new Promise(resolve => setTimeout(resolve, 100));
+}
