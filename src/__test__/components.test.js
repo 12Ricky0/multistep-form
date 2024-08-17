@@ -5,9 +5,10 @@ import CompletedForm from '../components/Completed.js';
 import user from "@testing-library/user-event";
 import FormTwo from '../components/FormTwo.js';
 import FormThree from '../components/FormThree.js';
+import FormFour from '../components/FormFour.js';
 
 jest.mock('react-responsive', () => ({
-    __esModule: true,  // Ensures that ES6 module is handled correctly
+    __esModule: true,
     default: jest.fn((props) => (props.children)),
 }));
 
@@ -75,8 +76,20 @@ describe('App tests', () => {
         expect(onChange).toHaveBeenCalled()
     });
 
-});
+    it('should render the FormFour component', () => {
+        render(<FormFour />);
+        const form = screen.getByRole('heading', { name: /finishing up/i });
+        expect(form).toBeInTheDocument();
+    });
 
-const pause = () => {
-    return new Promise(resolve => setTimeout(resolve, 100));
-}
+    it('users should be able to submit', async () => {
+        const onClick = jest.fn();
+
+        render(<FormFour onSubmit={onClick} />);
+        const button = screen.getAllByRole('button', { name: /confirm/i })[0];
+        user.click(button)
+        expect(onClick).toHaveBeenCalled()
+
+    })
+
+});
