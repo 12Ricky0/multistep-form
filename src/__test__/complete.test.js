@@ -4,6 +4,7 @@ import FormOne from '../components/FormOne.js';
 import CompletedForm from '../components/Completed.js';
 import user from "@testing-library/user-event";
 import FormTwo from '../components/FormTwo.js';
+import FormThree from '../components/FormThree.js';
 
 jest.mock('react-responsive', () => ({
     __esModule: true,  // Ensures that ES6 module is handled correctly
@@ -14,6 +15,7 @@ describe('App tests', () => {
 
 
     localStorage.setItem('name', 'Richard')
+
     it('should contains the heading 1', () => {
         render(<CompletedForm />);
         const heading = screen.getByRole('heading', {
@@ -23,9 +25,12 @@ describe('App tests', () => {
 
         const name = screen.getByTestId('name')
         expect(name).toHaveTextContent('Richard')
+        localStorage.removeItem('name')
+
     });
 
     it('should render the FormOne component', () => {
+
         render(<FormOne />);
         const form = screen.getByRole('form');
         expect(form).toBeInTheDocument();
@@ -54,6 +59,22 @@ describe('App tests', () => {
         user.click(button)
         expect(onChange).toHaveBeenCalled()
     });
+
+    it('should render the FormThree component', () => {
+        render(<FormThree />);
+        const form = screen.getAllByRole('checkbox');
+        expect(form).toHaveLength(3);
+    });
+
+    it('users can select addons', async () => {
+
+        const onChange = jest.fn();
+        render(<FormThree custProfile={onChange} />);
+        const button = screen.getAllByRole('checkbox')[2];
+        user.click(button)
+        expect(onChange).toHaveBeenCalled()
+    });
+
 });
 
 const pause = () => {
